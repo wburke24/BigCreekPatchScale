@@ -1,0 +1,43 @@
+
+awk -f change.def.awk par=epc.allocation_flag value="dickenson" < ../defs/4ponderosa.pine.comp > tmp2
+awk -f change.def.awk par=epc.alloc_frootc_leafc value=1.0 < tmp2 > tmp
+awk -f change.def.awk par=epc.alloc_stemc_leafc value=0.6  < tmp > tmp1
+awk -f change.def.awk par=epc.netpabs_shade value=0.2 < tmp1 > tmp2
+awk -f change.def.awk par=epc.netpabs_sunlit value=0.2 < tmp2 > tmp3
+awk -f change.def.awk par=epc.root_growth_direction value=0.9 < tmp3 > tmp2
+awk -f change.def.awk par=epc.proj_sla value=8 < tmp2 > tmp
+awk -f change.def.awk par=epc.gl_smax value=0.005 < tmp > tmp1
+awk -f change.def.awk par=epc.min_percent_leafg value=0.005 < tmp1 > tmp2
+awk -f change.def.awk par=epc.resprout_leaf_carbon value=0.01 < tmp2 > tmp3
+awk -f change.def.awk par=epc.min_percent_leafg value=0.01 < tmp3 > tmp
+awk -f change.def.awk par=epc.min_leaf_carbon value=0.001 < tmp > tmp2
+awk -f change.def.awk par=epc.tcoef value=0.6 < tmp2 > tmp1
+awk -f change.def.awk par=epc.topt value=15.0 < tmp1 > tmp3
+awk -f change.def.awk par=epc.branch_turnover value=0.005 < tmp3 > tmp2
+awk -f change.def.awk par=epc.max_daily_mortality value=0.01 < tmp3 > tmp1
+awk -f change.def.awk par=epc.min_daily_mortality value=0.01 < tmp1 > tmp2
+awk -f change.def.awk par=epc.froot_turnover value=0.5 < tmp2 > tmp
+awk -f change.def.awk par=epc.leaf_turnover value=0.5 < tmp > tmp1
+awk -f change.def.awk par=epc.gr_perc value=0.18 < tmp1 > tmp2
+awk -f change.def.awk par=mrc.per_N value=0.21 < tmp2 > tmp
+awk -f change.def.awk par=epc.ext_coef value=0.7 < tmp > tmp1
+awk -f change.def.awk par=epc.storage_transfer_prop value=0.7 < tmp1 > tmp2
+awk -f change.def.awk par=epc.root_distrib_parm value=7.000000  < tmp2 > ../defs/4ponderosa.pine.tmp 
+awk -f change.def.awk par=soil_depth value=1.0 < ../defs/patch_fp301.def > tmp2
+awk -f change.def.awk par=pore_size_index value=0.15 < tmp2 > tmp3
+awk -f change.def.awk par=sat_to_gw_coeff value=0.12 < tmp3 > tmp
+awk -f change.def.awk par=psi_air_entry value=0.15 < tmp > ../defs/patch_fp301.tmp
+
+
+
+
+
+
+
+
+
+
+
+
+
+

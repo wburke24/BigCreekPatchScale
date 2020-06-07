@@ -1,0 +1,20 @@
+- check if the shrub runs are good to keep
+- from  janet email
+
+init_conifer.awk - set for a def ID of 7 - for the overstory areas (cover fraction set to 0.6. gap fraction set to 0.1)
+init_shrubs.awk - set for a def ID of 50 - for the shrub only areas (no forest overstory, i just set a no veg understory for shrubs)
+init_understory.awk - set for a def ID of 51 - shrub understory under the conifer (cover fraction set to 0.6, gap fraction set to 0.0)
+init_soil31.awk - def ID of 31, use for the areas that are forest overstory/shrub understory
+init_soil32.awk - def ID of 32, use for the shrub only areas (that have no veg understory)
+
+i'm sure you know this - but to apply to your worldfile:
+
+awk -f init_conifer.awk < your_worldfile > over.world
+awk -f init_understory.awk < over.world > over_under.world
+
+resprouted stratum 12 - veg ID 50 (shrub) a few times
+sharing and no sharing scenarios the same
+
+streamflow responses are not consistent 
+test w one of each treatment, clim change
+finish fixing clim data

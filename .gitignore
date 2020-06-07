@@ -1,0 +1,15 @@
+# .gitignore
+# raw and processed output
+/output
+# plots produced from output
+/plots
+# compiled rhessys binaries
+/bin
+# unused unprocessed climate data from CZO for p301
+/ClimateSource
+# input spatial data for rhessys setup
+/Preprocessing
+#idk something I was testing 
+/save_out
+
+.Rhistory

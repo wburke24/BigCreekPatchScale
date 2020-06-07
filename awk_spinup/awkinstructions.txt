@@ -1,0 +1,28 @@
+so here are my awk scripts with the values in them for the veg & soil/litter - rather than sending you a spun up worldfile.
+(i.e. i already extracted the values from the worldfile and formatted them as awk scripts to apply to your worldfile)
+
+init_conifer.awk - set for a def ID of 7 - for the overstory areas (cover fraction set to 0.6. gap fraction set to 0.1)
+init_shrubs.awk - set for a def ID of 50 - for the shrub only areas (no forest overstory, i just set a no veg understory for shrubs)
+init_understory.awk - set for a def ID of 51 - shrub understory under the conifer (cover fraction set to 0.6, gap fraction set to 0.0)
+init_soil31.awk - def ID of 31, use for the areas that are forest overstory/shrub understory
+init_soil32.awk - def ID of 32, use for the shrub only areas (that have no veg understory)
+
+to apply to your worldfile:
+
+awk -f init_conifer.awk < your_worldfile > over.world
+awk -f init_understory.awk < over.world > over_under.world
+etc....
+
+# rule1 - shrubs
+awk -f init_shrubs.awk < ../worldfiles/no_spin/BC_shrub.world > ../worldfiles/tmp/BC_shrub.world
+awk -f init_soil31.awk < ../worldfiles/tmp/BC_shrub.world > ../worldfiles/BC_shrub.world
+
+# rule2 - conifer over shrubs + shrubs
+awk -f init_conifer.awk < ../worldfiles/no_spin/BC_shrub_conifer.world > ../worldfiles/tmp/BC_shrub_conifer.world
+awk -f init_shrubs.awk < ../worldfiles/tmp/BC_shrub_conifer.world > ../worldfiles/tmp/BC_shrub_conifer2.world
+awk -f init_soil31.awk < ../worldfiles/tmp/BC_shrub_conifer2.world > ../worldfiles/BC_shrub_conifer.world
+
+# rule3 - conifer over shrubs
+awk -f init_conifer.awk < ../worldfiles/no_spin/BC_conifer.world > ../worldfiles/tmp/BC_conifer.world
+awk -f init_shrubs.awk < ../worldfiles/tmp/BC_conifer.world > ../worldfiles/tmp/BC_conifer2.world
+awk -f init_soil31.awk < ../worldfiles/tmp/BC_conifer2.world > ../worldfiles/BC_conifer.world
