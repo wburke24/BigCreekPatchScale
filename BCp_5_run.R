@@ -77,6 +77,10 @@ load("soilslist.rdata")
 # -------------------- Standard (soil/subsurface) Parameters--------------------
 input_standard_par_list <- list(m = c(2), k = c(2), m_v = c(2), k_v = c(2), pa = c(1.15), po = c(0.766), gw1 = c(0.24), gw2 = c(0.2))
 
+input_std = function(m, k, m_v, k_v , pa, po, gw1, gw2) {
+  
+}
+
 # -------------------- Make Climate Basestation --------------------
 #input_clim_base_list <- NULL
 input_clim_base_list = clim_auto(base_station_id = 101, x_coordinate = 100.0, y_coordinate = 100.0, z_coordinate = 1748, 

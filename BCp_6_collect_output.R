@@ -180,4 +180,61 @@ notifier::notify(
 
 #system('7z e -o <output_dir> <archive_name>')
 
-#drive_auth(email = "wburke@ucsb.edu")
+# subset outputs for HydroShare to get <1GB per object
+sub_out = F
+if (sub_out) {
+  
+  # pct_chg, scenarios, are already small enough
+  # daily npp, standc, et, pspread, and heights (seperate for shrub and conifer+shrub)
+  load("output/R_obj/psn.rdata")
+  npp = DT_all[,c(3,4)]
+  save(npp, file = "output/HydroShare_out/npp.rdata", compress = "xz")
+  rm(DT_all, npp)
+  gc()
+  
+  load("output/R_obj/fire_et.rdata")
+  et = DT_all[,c(3,4)]
+  save(et, file = "output/HydroShare_out/et.rdata", compress = "xz")
+  rm(DT_all, et)
+  gc()
+  
+  load("output/R_obj/plantc.rdata")
+  standc = DT_all[,c(3,4)]
+  save(standc, file = "output/HydroShare_out/standc.rdata", compress = "xz")
+  rm(DT_all)
+  gc()
+  
+  load("output/R_obj/pspread.rdata")
+  firespread = DT_all[,c("run","value")]
+  save(firespread, file = "output/HydroShare_out/firespread.rdata", compress = "xz")
+  rm(DT_all)
+  gc()
+  
+  load("output/R_obj/height.rdata")
+  load("scen.rdata")
+  
+  heights = merge.data.table(DT_all, scen[,c("veg", "run")], by = "run", all = FALSE)
+  shrub_heights = heights[heights$veg == "shrub", c("run", "value")]
+  conifer_shrub_heights = heights[heights$veg == "conifer", c("run", "date", "stratumID", "value")]
+
+  rm(DT_all, heights)
+  gc()
+  
+  save(shrub_heights, file = "output/HydroShare_out/shrub_heights.rdata", compress = "xz")
+  save(conifer_shrub_heights, file = "output/HydroShare_out/conifer_shrub_heights.rdata", compress = "xz")
+  
+  rm(conifer_shrub_heights, shrub_heights)
+  gc()
+  
+  # test
+  load("output/HydroShare_out/npp.rdata")
+  load("output/HydroShare_out/et.rdata")
+  load("output/HydroShare_out/standc.rdata")
+  
+  
+  
+  
+}
+
+
+

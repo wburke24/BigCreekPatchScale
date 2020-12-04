@@ -33,8 +33,6 @@ for (w in seq_along(worldfiles_in)) {
     # remove pct understory + lagged remove all litter - for redefine_world_thin_X remain
     build_redefine(worldfiles_in[w], sub(".world", "_under_0.1.world", redef_worldfiles[w]), std_thin = "1", veg_parm_ID = "50", patchID = c("101", "102"))
     
-    
-    
     build_redefine(worldfiles_in[w], sub(".world", "_under_0.25.world" ,redef_worldfiles[w]),  std_thin = "1", veg_parm_ID = "50", patchID = c("103", "104"))
     build_redefine(worldfiles_in[w], sub(".world", "_under_0.4.world" ,redef_worldfiles[w]),  std_thin = "1", veg_parm_ID = "50", patchID = c("105", "106"))
     

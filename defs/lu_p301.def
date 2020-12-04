@@ -7,3 +7,5 @@
 0.000000	   detention_store_size
 1				sh_l
 1				sh_g
+0 msr_sat_transfer_flag
+1 shading_flag

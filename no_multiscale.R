@@ -82,7 +82,7 @@ soilslist = NULL
 load("soilslist.rdata")
 
 # -------------------- Standard (soil/subsurface) Parameters--------------------
-input_standard_par_list <- list(
+input_std_pars <- list(
   m = c(2),
   k = c(2),
   m_v = c(2),
@@ -103,24 +103,8 @@ input_clim_base_list = clim_auto(base_station_id = 101,
                                  screen_height = 2,
                                  daily_prefix = "clim/upGGmod")
 
-# -------------------- Make Dated Sequence --------------------
-input_dated_seq_list <- NULL
-
 # -------------------- Make Tec File --------------------
-# tec handled inside iteration loop
-input_tec_data = input_tec(NULL, start_end = start_end)
-
-
-# -------------------- Output --------------------
-output_method = "r"
-# old vars at basin level
-# output_variables <- data.frame(out_file = character(), variable = character(), stringsAsFactors = FALSE)
-# output_variables[1,] <- data.frame("bd", "streamflow", stringsAsFactors = FALSE)
-# output_variables[2,] <- data.frame("bd", "plantc", stringsAsFactors = FALSE)
-# output_variables[3,] <- data.frame("bd", "psn", stringsAsFactors = FALSE)
-# output_variables[4,] <- data.frame("bd", "lai", stringsAsFactors = FALSE)
-# output_variables[5,] <- data.frame("bd", "litter_capacity", stringsAsFactors = FALSE)
-# output_variables[6,] <- data.frame("bd", "litter_store", stringsAsFactors = FALSE)
+input_tec_data = IOin_tec_std(start_end = start_end)
 
 # ----- veg, soil and sharing parameters -----
 input_def_list = soilslist$medium
@@ -142,18 +126,26 @@ def_df <- data.frame(matrix(unlist(input_def_list), nrow = length(input_def_list
 # -------------------- End Run Setup--------------------
 
 # -------------------- Run RHESSys --------------------
-run_rhessys(parameter_method = parameter_method,
-            output_method = output_method,
-            input_rhessys = input_rhessys,
-            input_hdr_list = input_hdr_list,
-            input_preexisting_table = input_preexisting_table,
-            input_def_list = input_def_list,
-            input_standard_par_list = input_standard_par_list,
-            input_clim_base_list = input_clim_base_list,
-            input_dated_seq_list = input_dated_seq_list,
-            input_tec_data = input_tec_data,
-            output_variables = NULL, 
-            return_data = FALSE)
+# run_rhessys(parameter_method = parameter_method,
+#             output_method = output_method,
+#             input_rhessys = input_rhessys,
+#             input_hdr_list = input_hdr_list,
+#             input_preexisting_table = input_preexisting_table,
+#             input_def_list = input_def_list,
+#             input_standard_par_list = input_standard_par_list,
+#             input_clim_base_list = input_clim_base_list,
+#             input_dated_seq_list = input_dated_seq_list,
+#             input_tec_data = input_tec_data,
+#             output_variables = NULL, 
+#             return_data = FALSE)
+
+run_rhessys_core(
+  input_rhessys = input_rhessys,
+  hdr_files = input_hdr_list,
+  def_pars = input_def_list,
+  std_pars = input_std_pars,
+  tec_data = input_tec_data
+)
 
 # -------------------- Get Output --------------------
 # data_out = select_output_variables_R(output_variables = output_variables,

@@ -683,8 +683,8 @@ if (mindep_plots) {
   fig7 = grid.arrange(arrangeGrob(fig7, bottom=textGrob("Number of Trees", gp=gpar(fontsize=11))))
   
   ggsave(filename = "plots/Final_figs/f7_mindep.svg", plot = fig7, width = 12, height = 9)
-  ggsave(filename = "plots/Final_figs/f7_mindep.tiff", plot = fig7, width = 16, height = 12, dpi = 300, scale = 1)
-  
+  ggsave(filename = "plots/Final_figs/f7_mindep_nocomp.tiff", plot = fig7, width = 16, height = 12, dpi = 300, scale = 1)
+  ggsave(filename = "plots/Final_figs/f7_mindep.tiff", plot = fig7, width = 16, height = 12, dpi = 300, scale = 1, compression = "lzw")
   #beepr::beep(2)
 }
 
