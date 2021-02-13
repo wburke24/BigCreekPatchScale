@@ -367,6 +367,9 @@ if (plot_standc) {
   
   ggsave(filename = "plots/Final_figs/f3_standc_mn.svg", plot = fig3, width = 9, height = 6)
   ggsave(filename = "plots/Final_figs/f3_standc_mn.tiff", plot = fig3, width = 9, height = 6, dpi = 300)
+  ggsave(filename = "plots/Final_figs/f3_standc_mn_wide.tiff", plot = fig3, width = 10, height = 6, dpi = 300, compression = "lzw")
+  ggsave(filename = "plots/Final_figs/f3_standc_mn_wide2.tiff", plot = fig3, width = 11, height = 6, dpi = 300, compression = "lzw")
+  
 }
 
 # -=================================================-
